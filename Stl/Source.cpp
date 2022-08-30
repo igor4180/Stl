@@ -3,6 +3,8 @@
 #include<array>
 #include<vector>
 #include<deque>
+#include<list>
+#include<iterator>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -10,7 +12,7 @@ using std::endl;
 
 //#define ARRAY
 //#define VECTOR
-#define DEQUE
+//#define DEQUE
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -91,6 +93,9 @@ void main()
 	cout << *(vec.end() - 1) << endl;
 	//vec.insert(vec.begin() + 2, (vec.end() - 4), vec.end());
 	//for (int i : vec)cout << i << tab; cout << endl;
+	cout << "Введите индекс удаляемого элемента:\t"; cin >> index;
+	cout << "Введите количество удалений:\t"; cin >> value;
+	vec.erase(vec.begin() + index, vec.begin() + index + value);
 #endif // VECTOR
 
 #ifdef DEQUE
@@ -124,6 +129,19 @@ void main()
 
 #endif // DEQUE
 
+	std::list<int> list = { 3,5,8,13,21 };
+	for (std::list<int>::iterator it = list.begin(); it != list.end(); ++it)
+		cout << *it << tab;
+	cout << endl;
+	int index;
+	int value;
+	cout << "Введите индекс добавляемого элемента: "; cin >> index;
+	cout << "Введите значение добавляемого элемента: "; cin >> value;
+	std::list<int>::iterator position = list.begin();
+	//for (int i = 0; i < index; i++)position++;
+	std::advance(position, index);
+	list.insert(position, value);
+	for (int i : list)cout << i << tab; cout << endl;
 	
 
 }
